@@ -1,6 +1,6 @@
 <template>
   <Teleport to=".modals-container">
-    <div class="modal">
+    <div class="modal" v-if="value">
       <h1><slot name="title"></slot></h1>
       <h2>{{ subTitle }}</h2>
       <slot></slot>
@@ -11,17 +11,24 @@
 
 <script setup>
 import { useSlots } from "vue";
+import { useVModel } from "@vueuse/core";
 
 // This is how to access slots data in composition api
 const slots = useSlots();
 
 const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
   subTitle: {
     type: String,
   },
 });
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "update:modelValue"]);
+
+const value = useVModel(props, "modelValue", emit);
 </script>
 
 <style scoped>
