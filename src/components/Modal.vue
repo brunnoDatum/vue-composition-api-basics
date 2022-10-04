@@ -5,12 +5,14 @@
       <h2>{{ subTitle }}</h2>
       <slot></slot>
       <button @click="hideModal">Hide Modal</button>
+
+      <div>Username: {{ userData?.username }}</div>
     </div>
   </Teleport>
 </template>
 
 <script setup>
-import { useSlots } from "vue";
+import { inject, useSlots } from "vue";
 import { useVModel } from "@vueuse/core";
 
 // This is how to access slots data in composition api
@@ -33,6 +35,8 @@ const value = useVModel(props, "modelValue", emit);
 const hideModal = () => {
   emit("update:modelValue", false);
 };
+
+const userData = inject("userData");
 </script>
 
 <style scoped>
