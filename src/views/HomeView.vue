@@ -12,13 +12,14 @@
 
     <div class="edit">
       <h4>Edit title:</h4>
-      <input type="text" v-model="title" />
+      <input type="text" v-model="title" v-focus />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, watch } from "vue";
+import { vFocus } from "@/directives/vFocus";
 
 const counter = ref(0);
 const title = ref("Counter:");
