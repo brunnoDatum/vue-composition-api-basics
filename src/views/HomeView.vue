@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 
 const counter = ref(0);
 const title = ref("Counter:");
@@ -37,6 +37,15 @@ const oddEven = computed(() => {
   }
   return "odd";
 });
+
+watch(
+  () => counter.value,
+  (newCounter, oldCounter) => {
+    if (newCounter === 20) {
+      alert("Reached 20!");
+    }
+  }
+);
 </script>
 
 <style>
