@@ -1,8 +1,15 @@
 <template>
   <div class="modals">
     <h1>Modals</h1>
+    <div>
+      <label> Use dark modal <input type="checkbox" v-model="showDarkModal" /> </label>
+    </div>
     <button @click="showModal">Show Modals</button>
-    <Modal v-model="visible" subTitle="Modal Sub Title">
+    <component
+      :is="showDarkModal ? ModalDark : Modal"
+      v-model="visible"
+      subTitle="Modal Sub Title"
+    >
       <template #title>Modal Title</template>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
@@ -14,17 +21,20 @@
         with desktop publishing software like Aldus PageMaker including versions of Lorem
         Ipsum.
       </p>
-    </Modal>
+    </component>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import Modal from "@/components/Modal.vue";
+import ModalDark from "@/components/ModalDark.vue";
 
 const visible = ref(false);
 
 const showModal = () => {
   visible.value = true;
 };
+
+const showDarkModal = ref(false);
 </script>
