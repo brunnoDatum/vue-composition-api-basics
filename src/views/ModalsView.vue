@@ -2,8 +2,8 @@
   <div class="modals">
     <h1>Modals</h1>
     <button @click="showModal">Show Modals</button>
-    <Modal v-model="visible" subTitle="Modal Sub Title" @close="hideModal">
-      <template v-slot:title>Modal Title</template>
+    <Modal v-model="visible" subTitle="Modal Sub Title">
+      <template #title>Modal Title</template>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
         Ipsum has been the industry's standard dummy text ever since the 1500s, when an
@@ -26,8 +26,5 @@ const visible = ref(false);
 
 const showModal = () => {
   visible.value = true;
-};
-const hideModal = () => {
-  visible.value = false;
 };
 </script>

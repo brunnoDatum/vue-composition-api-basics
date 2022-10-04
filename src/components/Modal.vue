@@ -4,7 +4,7 @@
       <h1><slot name="title"></slot></h1>
       <h2>{{ subTitle }}</h2>
       <slot></slot>
-      <button @click="$emit('close')">Hide Modal</button>
+      <button @click="hideModal">Hide Modal</button>
     </div>
   </Teleport>
 </template>
@@ -26,9 +26,13 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["close", "update:modelValue"]);
+const emit = defineEmits(["update:modelValue"]);
 
 const value = useVModel(props, "modelValue", emit);
+
+const hideModal = () => {
+  emit("update:modelValue", false);
+};
 </script>
 
 <style scoped>
