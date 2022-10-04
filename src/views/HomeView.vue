@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h2>{{ appTitle }}</h2>
+    <h2 ref="appTitleRef">{{ appTitle }}</h2>
 
     <h3>{{ title }}</h3>
 
@@ -20,10 +20,14 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import { vFocus } from "@/directives/vFocus";
 
 const appTitle = ref("Vue 3 Composition Basics");
+const appTitleRef = ref(null);
+onMounted(() => {
+  console.log(appTitleRef.value.offsetWidth);
+});
 
 const counter = ref(0);
 const title = ref("Counter:");
