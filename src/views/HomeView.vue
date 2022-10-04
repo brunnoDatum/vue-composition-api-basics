@@ -20,8 +20,9 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from "vue";
+import { ref, onMounted } from "vue";
 import { vFocus } from "@/directives/vFocus";
+import { useCounter } from "@/composables/useCounter";
 
 const appTitle = ref("Vue 3 Composition Basics");
 const appTitleRef = ref(null);
@@ -29,35 +30,9 @@ onMounted(() => {
   console.log(appTitleRef.value.offsetWidth);
 });
 
-const counter = ref(0);
 const title = ref("Counter:");
 
-const increaseCounter = () => {
-  counter.value++;
-  nextTick(() => {
-    console.log("Do something after value update");
-  });
-};
-
-const decreaseCounter = () => {
-  counter.value--;
-};
-
-const oddEven = computed(() => {
-  if (counter.value % 2 === 0) {
-    return "even";
-  }
-  return "odd";
-});
-
-watch(
-  () => counter.value,
-  (newCounter, oldCounter) => {
-    if (newCounter === 20) {
-      alert("Reached 20!");
-    }
-  }
-);
+const { counter, oddEven, increaseCounter, decreaseCounter } = useCounter();
 </script>
 
 <style>
