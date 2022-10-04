@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from "vue";
+import { ref, computed, watch, onMounted, nextTick } from "vue";
 import { vFocus } from "@/directives/vFocus";
 
 const appTitle = ref("Vue 3 Composition Basics");
@@ -34,6 +34,9 @@ const title = ref("Counter:");
 
 const increaseCounter = () => {
   counter.value++;
+  nextTick(() => {
+    console.log("Do something after value update");
+  });
 };
 
 const decreaseCounter = () => {
