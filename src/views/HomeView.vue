@@ -8,6 +8,8 @@
       <button class="btn" @click="increaseCounter">+</button>
     </div>
 
+    <p>This counter is {{ oddEven }}</p>
+
     <div class="edit">
       <h4>Edit title:</h4>
       <input type="text" v-model="title" />
@@ -16,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const counter = ref(0);
 const title = ref("Counter:");
@@ -28,6 +30,13 @@ const increaseCounter = () => {
 const decreaseCounter = () => {
   counter.value--;
 };
+
+const oddEven = computed(() => {
+  if (counter.value % 2 === 0) {
+    return "even";
+  }
+  return "odd";
+});
 </script>
 
 <style>
