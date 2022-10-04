@@ -2,6 +2,7 @@
   <Teleport to=".modals-container">
     <div class="modal">
       <h1><slot name="title"></slot></h1>
+      <h2>{{ subTitle }}</h2>
       <slot></slot>
       <button @click="hideModal">Hide Modal</button>
     </div>
@@ -13,6 +14,12 @@ import { useSlots } from "vue";
 
 // This is how to access slots data in composition api
 const slots = useSlots();
+
+const props = defineProps({
+  subTitle: {
+    type: String,
+  },
+});
 </script>
 
 <style scoped>

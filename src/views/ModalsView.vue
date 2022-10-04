@@ -2,7 +2,7 @@
   <div class="modals">
     <h1>Modals</h1>
     <button @click="showModal">Show Modals</button>
-    <Modal v-if="visible">
+    <Modal v-if="visible" subTitle="Modal Sub Title">
       <template v-slot:title>Modal Title</template>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
