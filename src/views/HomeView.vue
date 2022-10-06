@@ -5,12 +5,12 @@
     <h3>{{ title }}</h3>
 
     <div>
-      <button class="btn" @click="decreaseCounter">-</button>
-      <span class="counter">{{ counter }}</span>
-      <button class="btn" @click="increaseCounter">+</button>
+      <button class="btn" @click="useCounter.decreaseCounter()">-</button>
+      <span class="counter">{{ useCounter.counter }}</span>
+      <button class="btn" @click="useCounter.increaseCounter()">+</button>
     </div>
 
-    <p>This counter is {{ oddEven }}</p>
+    <p>This counter is {{ useCounter.oddOrEven }}</p>
 
     <div class="edit">
       <h4>Edit title:</h4>
@@ -22,7 +22,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { vFocus } from "@/directives/vFocus";
-import { useCounter } from "@/composables/useCounter";
+import { useCounterStore } from "@/stores/counter";
 
 const appTitle = ref("Vue 3 Composition Basics");
 const appTitleRef = ref(null);
@@ -32,7 +32,7 @@ onMounted(() => {
 
 const title = ref("Counter:");
 
-const { counter, oddEven, increaseCounter, decreaseCounter } = useCounter();
+const useCounter = useCounterStore();
 </script>
 
 <style>
